@@ -1,0 +1,24 @@
+doctype html
+html(lang="en")
+    title #{title.type} #{title.text}
+    style
+        include ../css/styles.css
+    body  
+        include ../partials/headers
+        h1 #{title.text}'s Artwork
+
+        each item in results
+            a(href="/artworks/" + item._id) #{item.name} 
+            br
+            img(src=item.image alt=item.name style='width:100px; height:100px')
+            br
+            a(href="/profile/" + item.artistId) #{"By: "+ item.artist}
+            br
+            br
+        p
+            if  current>1
+                a(href=link+(current-1)) prev
+            |   page #{current}   
+            a(href=link+(+current+1)) next
+            
+

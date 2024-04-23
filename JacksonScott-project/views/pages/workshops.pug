@@ -1,0 +1,18 @@
+doctype html
+html(lang="en")
+    title Upcoming workshops
+    style
+        include ../css/styles.css
+    body  
+        include ../partials/headers
+        h1 Upcoming Workshops
+        each shop in items 
+            h3 
+                a(href="/workshops/" + shop._id) #{shop.name}
+            img(src="#{shop.image}")
+            p Hosted by
+                a(href="/profile/" + shop.artistId) #{shop.artist}
+            p when? #{shop.day +" of "+ shop.month +" "+ shop.year}
+            p #{shop.description}
+            br
+            br

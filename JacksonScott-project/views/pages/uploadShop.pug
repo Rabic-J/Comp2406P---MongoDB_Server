@@ -1,0 +1,35 @@
+doctype html
+html(lang="en")
+    title Upload Workshop
+    style
+        include ../css/styles.css
+    body  
+        include ../partials/headers
+        h1 Upload Workshop
+
+        p(id='artist') #{session.username}
+        p(id='id' style="display:none") #{session.userid}
+        p
+            | Workshop Name: 
+            input(type='text', id='name')
+            br
+            | Day: 
+            input(type='text', id='day')
+            br
+            | Month: 
+            input(type='text', id='month')
+            br
+            | Year: 
+            input(type='text', id='year')
+            br
+            | Medium: 
+            input(type='text', id='medium')
+            br
+            | Description: 
+            input(type='text', id='description')
+            br
+            | Image link: 
+            input(type='text', id='link')
+            br
+            input(type='submit', id='addShop' value='Submit')
+            script(src="../addShop.js")

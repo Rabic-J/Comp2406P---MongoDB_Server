@@ -1,0 +1,20 @@
+doctype html
+html(lang="en")
+    title ArtWorks
+    style
+        include ../css/styles.css
+    body
+        include ../partials/headers
+        h1 ArtWorks
+        each piece in items
+            a(href="/artworks/" + piece._id) #{piece.name}  
+            br
+            img(src=piece.image alt=piece.name style='width:150px; height:150px')
+            br
+            a(href="/profile/" + piece.artistId) #{"By: "+ piece.artist}
+            br
+            br
+        if  current>1
+            a(href=link+(current-1)) prev
+        |   page #{current}   
+        a(href=link+(+current+1)) next

@@ -1,0 +1,46 @@
+doctype html
+html(lang="en")
+    title #{piece.name}
+    style
+        include ../css/styles.css
+
+    body
+        include ../partials/headers
+        p(style="display:none" id="id") #{piece._id}
+
+        h1( id="name") #{piece.name} 
+        img(src=piece.image alt=piece.name style='width:500px; height:500px')
+        br
+        select(name="select" id="select")
+            option(value="like") LIKE
+            option(value="dislike") DISLIKE
+        input(type='text', id='text')
+
+        button(type='button' onclick="review()") Submit
+
+        h4 Artist: 
+        p    
+            a(href="/profile/" + piece.artistId) #{piece.artist}
+        h4 Year: 
+        p
+            a(class='button' href=`/results?type=year&text=`+piece.year+`&page=1`) #{piece.year}
+        h4 Category:
+        p 
+            a(class='button' href=`/results?type=category&text=`+piece.category+`&page=1`) #{piece.category}
+        h4 Medium: 
+        p
+            a(class='button' href=`/results?type=medium&text=`+piece.medium+`&page=1`) #{piece.medium}
+        h4 Description: 
+        p #{piece.description}
+
+        h4 Reviews:
+        p
+            each review in piece.reviews
+                if review.like 
+                    | Liked by 
+                else
+                    | disliked by 
+                a(href="/profile/" + review.id) #{review.name}
+                |  #{review.review}
+    script(src="../review.js")
+    style(scr = "../css/styles.css")

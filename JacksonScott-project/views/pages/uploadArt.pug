@@ -1,0 +1,32 @@
+doctype html
+html(lang="en")
+    title Upload Artwork
+    style
+        include ../css/styles.css
+    body  
+        include ../partials/headers
+        h1 Upload Artwork
+
+        p(id='artist') #{session.username}
+        p(id='id' style="display:none") #{session.userid}
+        p
+            | Piece Name: 
+            input(type='text', id='name')
+            br
+            | Year: 
+            input(type='text', id='year')
+            br
+            | Category: 
+            input(type='text', id='category')
+            br
+            | Medium: 
+            input(type='text', id='medium')
+            br
+            | Description: 
+            input(type='text', id='description')
+            br
+            | Image Link: 
+            input(type='text', id='link')
+            br
+            input(type='submit', id='addArt' value='Submit')
+            script(src="../addArt.js")

@@ -1,0 +1,53 @@
+doctype html
+html(lang="en")
+    title Profile
+    style
+        include ../css/styles.css
+    body  
+        include ../partials/headers
+        p(style="display:none" id="id") #{user._id}
+        p(style="display:none" id="Sid") #{session.userid}
+
+        h1 #{user.username}'s Profile
+        button(type='button' onclick="follow(true)") Follow
+        button(type='button' onclick="follow(false)") Unfollow
+
+        if user.artist
+            h3 Artist
+                br
+                br
+                a(class='button' href=`/results?type=artist&text=`+user.username+`&page=1`) Artwork
+        else
+            h3 Patron
+        
+        h3 Reviews
+        p
+        each review in user.reviews
+            a(href="/artworks/" + review.id) #{review.reviews}
+            br
+
+        h3 Workshop hosting
+        p
+        each shop in user.hosting
+            a(href="/workshops/" + shop.id) #{shop.name}
+            br
+
+        h3 Workshop joining
+        p
+        each shop in user.workshops
+            a(href="/workshops/" + shop.id) #{shop.name}
+            br
+
+        h3 Following
+        p
+        each person in user.following
+            a(href="/profile/" + person.id) #{person.name}
+            br
+                
+
+        h3 Followers
+        p
+        each follow in user.followers
+            a(href="/profile/" + follow.id) #{follow.name}
+            br
+    script(src="../profile.js")

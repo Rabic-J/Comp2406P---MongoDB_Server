@@ -1,0 +1,20 @@
+doctype html
+html(lang="en")
+    title Search
+    style
+        include ../css/styles.css
+    body  
+        include ../partials/headers
+        h1 Search
+        input(type='text', id='search')
+        button(type='button' onclick="search()") Search
+        h4 Format Search 
+        p "searchtype?searchtext"
+        h4 Example
+        p "artist?Luke"
+        h4 Searchable Types
+        p 
+            ul name
+            ul artist
+            ul category
+        script(src="../user.js")

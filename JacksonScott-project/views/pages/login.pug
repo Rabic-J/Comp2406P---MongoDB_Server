@@ -1,0 +1,17 @@
+doctype html
+html(lang="en")
+    title Login
+    style
+        include ../css/styles.css
+    body  
+        include ../partials/headers
+        h1 Login
+        form(action="/login" method="post")
+                | Username: 
+                input(type="text" name="username" required)
+                br
+                |   Password: 
+                input(type="password" name="password" required)
+                |   
+                br
+                button(type="submit") Login   

@@ -1,0 +1,28 @@
+doctype html
+html(lang="en")
+    title #{shop.name} Workshop
+    style
+        include ../css/styles.css
+    body  
+        include ../partials/headers
+        p(style="display:none" id="id") #{shop._id}
+        p(style="display:none" id="hostId") #{shop.artistId}
+
+        h1(id="name") #{shop.name} 
+        img(src="#{shop.image}")
+
+        p Join us on the #{shop.day} of #{shop.month} in #{shop.year}. For our #{shop.name} workshop where we'll learn all about #{shop.category}
+        p Hosted by 
+            a(href="/profile/" + shop.artistId) #{shop.artist} 
+
+        h3 Description: 
+        p #{shop.description}
+        h3 Participants:
+        p   
+            each person in shop.participants
+                a(href="/profile/" + person.id) #{person.name} 
+
+        button(type='button' onclick="join(true)") join
+        button(type='button' onclick="join(false)") leave
+
+    script(src="../review.js")

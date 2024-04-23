@@ -1,0 +1,59 @@
+doctype html
+html(lang="en")
+    title Profile
+    style
+        include ../css/styles.css
+    body  
+        include ../partials/headers
+        h1 #{user.username}'s Profile
+        p(style="display:none" id="id") #{user._id}
+        p(style="display:none" id="Sid") #{session.userid}
+
+        if user.artist
+            h3 Artist
+            button(type='button' onclick="uploadArt()") New Piece
+            button(type='button' onclick="uploadShop()") New Workshop
+            br
+            button(type='button' onclick="swap(false)") Become patron
+            h3 
+                a(class='button' href=`/results?type=artist&text=`+user.username+`&page=1`) Artwork
+        else
+            h3 Patron
+            button(type='button' onclick="swap(true)") Become Artist
+
+        h3 Following
+        each person in user.following
+            a(href="/profile/" + person.id) #{person.name}
+            input(type='submit', id=person.id class="deleteButton" value="Unfollow")
+            br
+
+        h3 Followers
+        each follow in user.followers
+            br
+            a(href="/profile/" + follow.id) #{follow.name}
+
+        h3 Notifications
+        each note in user.notification
+            p #{note}
+        button(type='button' onclick="clean()") Clear
+
+        h3 Reviews
+        each review in user.reviews
+            p
+            if review.like 
+                | Liked  
+            else
+                | Disliked  
+            a(href="/artworks/" + review.id) #{review.name}
+            br
+        h3 Workshop hosting
+        each shop in user.hosting
+            a(href="/workshops/" + shop.id) #{shop.name}
+            br
+
+        h3 Workshop joining
+        each shop in user.workshops
+            a(href="/workshops/" + shop.id) #{shop.name}
+            br
+
+    script(src="../user.js")

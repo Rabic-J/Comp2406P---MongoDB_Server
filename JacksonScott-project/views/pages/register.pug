@@ -1,0 +1,18 @@
+doctype html
+html(lang="en")
+	title Register
+	style
+		include ../css/styles.css
+	body  
+		include ../partials/headers
+		h1 Register
+		div#error(style="color:red")
+		div
+			| Username: 
+			input#name(type="textbox")
+		div
+			| Password: 
+			input#pass(type="password")
+		div
+			button#submit(type="button") Register
+		script(src="/register.js")
